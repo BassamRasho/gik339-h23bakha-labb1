@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Labb 1 - GIK339</title>
+
+    <!-- scriptet körs efter sidan laddat -->
+    <script src="script.js" defer></script>
+
+</head>
+<body>
+
+    <h1>Labb 1 – Min lösning</h1>
+
+    <p>Öppna konsolen (F12) för att se vad programmet skriver ut.</p>
+
+    <!-- inget mer behövs här egentligen -->
+
+</body>
+</html>
+<!--
+Reflektion uppgift 1
+1) Placeringen av <script>-taggen påverkar när koden körs och hur sidan upplevs.
+   Om <script> ligger i <head> utan defer blockeras parsningen tills scriptet laddats/körts.
+   Ligger <script> sist i <body> hinner HTML:en ritas ut före scriptet körs.
+2) Med attributet defer laddas scriptet parallellt men **körs först när HTML-dokumentet är färdigparsat**.
+   Det gör att man tryggt kan lägga <script src="script.js" defer></script> i <head> utan att blockera sidan.
+-->
