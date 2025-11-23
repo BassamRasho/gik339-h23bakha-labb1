@@ -1,10 +1,7 @@
-// ----------------------------
-//  Variabler: var, let, const
-// ----------------------------
+// Bara för att testa skillnaden på block-scope
+console.log("Kollar block-scope...");
 
-// Exempel på block-scope
-console.log("Test av block-scope börjar...");
-
+// Variabler utanför block
 let x = "let utanför block";
 const y = "const utanför block";
 var z = "var utanför block";
@@ -12,52 +9,29 @@ var z = "var utanför block";
 console.log("Utanför block:", x, y, z);
 
 {
-    // Här skapas nya x och y eftersom let/const är blockscope
-    let x = "let inuti block";
-    const y = "const inuti block";
+    // Nya x och y gäller bara här inne (block scope)
+    let x = "let inne i block";
+    const y = "const inne i block";
 
-    // var däremot skriver över den tidigare variabeln
-    var z = "var ÄR ändrad i block";
+    // var skriver över den gamla z (ingen block-scope)
+    var z = "var ändrad i block";
 
-    console.log("Inuti block:", x, y, z);
+    console.log("Inne i block:", x, y, z);
 }
 
 console.log("Efter block:");
-console.log("x:", x);  // den utanför blocket
-console.log("y:", y);  // samma som utanför
-console.log("z:", z);  // ändrad, eftersom var är function/global scope
-
-
-// -----------------------------------------
-//  Jämförelser: == vs ===
-// -----------------------------------------
-
-console.log("\nJämförelser:");
-
-console.log("'4' == 4  →", '4' == 4);      // true – jämför bara värde
-console.log("'4' === 4 →", '4' === 4);    // false – jämför både typ & värde
-
-// NaN är aldrig lika med något, inte ens sig själv
-console.log("NaN === NaN →", NaN === NaN); // false
-
-
-// -----------------------------------------
-//  Funktioner: greet()
-// -----------------------------------------
-
-function greet(name) {
-    // Gör namn enklare att visa
-    return "Hej " + name + "!";
+console.log("x:", x);   // samma som innan
+console.log("y:", y);   // samma som innan
+console.log("z:", z);   // ändrad (var är globalt)
+  
+// enkel funktion som säger hej
+function greet(namn) {
+    return "Hej " + namn + "!";
 }
 
-// Exempel-utskrift
 console.log(greet("Student"));
 
-
-// -----------------------------------------
-//  Funktioner: calc()
-// -----------------------------------------
-
+// En liten miniräknare som hämtar två tal från användaren
 function calc() {
     const input1 = prompt("Skriv första talet:");
     const input2 = prompt("Skriv andra talet:");
@@ -66,18 +40,25 @@ function calc() {
     const num2 = Number(input2);
 
     if (isNaN(num1) || isNaN(num2)) {
-        alert("Du måste skriva giltiga nummer!");
+        alert("Du måste skriva in riktiga nummer!");
         return;
     }
 
     const resultat = {
-        addition: num1 + num2,
-        subtraktion: num1 - num2,
-        multiplikation: num1 * num2,
-        division: num2 !== 0 ? (num1 / num2) : "Kan ej dela med 0"
+        plus: num1 + num2,
+        minus: num1 - num2,
+        gånger: num1 * num2,
+        delat: num2 !== 0 ? (num1 / num2) : "Går inte dela med 0"
     };
 
     console.log("Resultat:");
-    console.table(resultat);
-    alert("Kolla konsolen (F12) för resultat!");
+    console.log("Addition:", resultat.plus);
+    console.log("Subtraktion:", resultat.minus);
+    console.log("Multiplikation:", resultat.gånger);
+    console.log("Division:", resultat.delat);
+
+    return resultat;
 }
+
+// kör funktionen så man kan testa i konsolen
+calc();
